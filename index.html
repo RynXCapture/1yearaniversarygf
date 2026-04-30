@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Rose Énigme</title>
 
 <!-- Polices cute -->
@@ -19,20 +21,21 @@ body {
     text-align: center;
     color: white;
     overflow-x: hidden;
+    padding: 10px;
 }
 
-/* BACKGROUND FULL SCREEN + FLOU */
+/* BACKGROUND */
 .background {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: url('background.jpeg') center center / cover no-repeat;
+    background: url('background.jpeg') center / cover no-repeat;
     filter: blur(12px);
-    transform: scale(1.1); /* évite les bords blancs */
+    transform: scale(1.1);
     z-index: -3;
 }
 
-/* OVERLAY ROSE */
+/* OVERLAY */
 .overlay {
     position: fixed;
     width: 100%;
@@ -45,96 +48,98 @@ body {
 .content {
     position: relative;
     z-index: 1;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 /* TITRE */
 h1 {
     font-family: 'Pacifico', cursive;
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: 28px;
+    margin-bottom: 15px;
     color: #fff0f5;
 }
 
 /* INPUT */
 input {
     padding: 14px;
-    width: 320px;
+    width: 90%;
+    max-width: 400px;
     border-radius: 30px;
     border: none;
     outline: none;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
+/* BOUTON */
 button {
-    padding: 14px 20px;
+    width: 90%;
+    max-width: 400px;
+    padding: 14px;
     border-radius: 30px;
     border: none;
-    cursor: pointer;
     background: #ff69b4;
     color: white;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
 button:hover {
     background: #ff85c1;
 }
 
-/* ZONE FLEUR */
+/* CONTAINER */
 .container {
     position: relative;
-    width: 600px;
-    margin: 50px auto;
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
 }
 
-/* TA FLEUR */
+/* FLEUR */
 .flower {
-    width: 380px;
-    display: block;
-    margin: auto;
+    width: 100%;
 }
 
-/* ZONES CLIQUABLES */
+/* ZONES */
 .zone {
     position: absolute;
-    width: 140px;
-    height: 140px;
+    width: 22%;
+    height: 22%;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: white;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.15);
     backdrop-filter: blur(5px);
     transition: 0.3s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .zone:hover {
     transform: scale(1.1);
-    background: rgba(255,255,255,0.2);
 }
 
 /* POSITIONS */
-.z1 { top: -20px; left: 230px; }
-.z2 { top: 120px; right: 0; }
-.z3 { bottom: -20px; right: 100px; }
-.z4 { bottom: -20px; left: 100px; }
-.z5 { top: 120px; left: 0; }
+.z1 { top: -5%; left: 39%; }
+.z2 { top: 28%; right: -5%; }
+.z3 { bottom: -5%; right: 18%; }
+.z4 { bottom: -5%; left: 18%; }
+.z5 { top: 28%; left: -5%; }
 
 /* ENIGME */
 #enigmeBox {
-    margin-top: 20px;
-    font-size: 20px;
-    min-height: 40px;
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 0 10px;
 }
 
 /* RESULT */
 #result {
     display: none;
-    margin-top: 40px;
+    margin-top: 30px;
     animation: fadeIn 1s ease;
 }
 
@@ -143,36 +148,38 @@ button:hover {
     to {opacity:1;}
 }
 
+/* TEXTE */
+#result p {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px;
+}
+
 /* GALERIE */
 .gallery {
-    max-width: 900px;
-    margin: 30px auto;
+    max-width: 100%;
+    margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 8px;
-    padding: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
 }
 
 .gallery img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
     object-fit: cover;
-    border-radius: 12px;
-    cursor: pointer;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
-/* effet insta */
 .gallery img:hover {
     transform: scale(1.05);
-    filter: brightness(1.1);
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
 <div class="background"></div>
 <div class="overlay"></div>
 
@@ -185,56 +192,41 @@ button:hover {
 
 <div class="container">
 
-    <!-- TON IMAGE -->
-    <img src="flower.png" class="flower">
+<img src="flower.png" class="flower">
 
-    <!-- ZONES -->
-    <div class="zone z1" onclick="showEnigme(0)">1</div>
-    <div class="zone z2" onclick="showEnigme(1)">2</div>
-    <div class="zone z3" onclick="showEnigme(2)">3</div>
-    <div class="zone z4" onclick="showEnigme(3)">4</div>
-    <div class="zone z5" onclick="showEnigme(4)">5</div>
+<div class="zone z1" onclick="showEnigme(0)">1</div>
+<div class="zone z2" onclick="showEnigme(1)">2</div>
+<div class="zone z3" onclick="showEnigme(2)">3</div>
+<div class="zone z4" onclick="showEnigme(3)">4</div>
+<div class="zone z5" onclick="showEnigme(4)">5</div>
 
 </div>
 
 <div id="enigmeBox">Clique sur un pétale 🌸</div>
 
 <div id="result">
-    <h2>💖 Bravo 💖</h2>
+<h2>💖 Bravo 💖</h2>
 
-    <div class="gallery">
-    <img src="photo1.jpeg">
-    <img src="photo2.jpeg">
-    <img src="photo3.jpeg">
-    <img src="photo4.jpeg">
-    <img src="photo5.jpeg">
-    <img src="photo6.jpeg">
-    <img src="photo7.jpeg">
-    <img src="photo8.jpeg">
-    <img src="photo9.jpeg">
-    <img src="photo10.jpeg">
-    <img src="photo11.jpeg">
-    <img src="photo12.jpeg">
-    <img src="photo13.jpeg">
-    <img src="photo14.jpeg">
-    <img src="photo15.jpeg">
-    <img src="photo16.jpeg">
-    <img src="photo17.jpeg">
-    <img src="photo18.jpeg">
-    <img src="photo19.jpeg">
-    <img src="photo20.jpeg">
+<div class="gallery">
+<img src="photo1.jpeg">
+<img src="photo2.jpeg">
+<img src="photo3.jpeg">
+<img src="photo4.jpeg">
+<img src="photo5.jpeg">
+<img src="photo6.jpeg">
+<img src="photo7.jpeg">
+<img src="photo8.jpeg">
+<img src="photo9.jpeg">
 </div>
 
-    <p>« Toda panela tem sua tampa » , ou autrement dit, toutes casseroles a besoin de son couvercle. J’aimerai être ton couvercle jusqu’à la fin de tes jours meu Anjinho, un couvercle qui pourrait contenir et protéger le contenu de cette merveilleuse casserole.
-Mon Amour, tout les jours que la vie me donne à tes cotés me fait réfléchir et grandir un peu plus, grâce à notre relation j’ai pu m’améliorer et trouver un sens à ma vie, cette vie, je te la dédie. 1 an est tellement peu comparé aux nombreuses années que nous traverseront, mais cependnat, cette année fut pleine de joies, de tristesses, mais aussi de complications, toutes ces choses nous on faits grandir un peu plus chaque jours en temps que couple.
-Concernant ces compliications, je t’en ai fait subir un grand nombre durant cette année, surtout sur la fin. Te voir mal me rend mal, te voir triste me rend triste, et je ne peux rien faire. Je VEUX être la pour toi, je VEUX te rassurer et te prendre dans mes bras, je veux être la pour toi à mon maximum. Par ma faute tu a aujourd’hui mal, et par ma faute je ne peux pas t’aider et te prendre dans mes bras. Ta chaleur me manque, tes bras me manque, TU me manque, tellement…
-Mais je sais que même si il y a beaucoup de hauts et de bas, cette année fut la première et la dernière à en avoir, et ceci est une promesse que je te fait. Je ne souhaite plus revivre quelque chose qui nous fait autant de mal à nous deux, je ne veux plus revivre aussi ce sentiment de distance et de contrôle permanant sur notre couple. Je ne veux pas que tu me quitte.
-Merci à toi, Meu Anjinho, de rester avec moi, et de me laisser rester avec toi, de me laisser t’aimer, et de m’aimer. Tu rayonne avec un jaune aussi éclatant que le soleil, et quand tu pleure, tes larmes se trouvent être aussi bleus que la lune.
-Merci de me rendre vivant, de donner un but à ma vie.
-Ce sont hélas sur ces 400 mots que je te laisse en cette belle soirée, t’épanouir à ton sommeil.
-Joyeuse première année ensemble, ma Chouchette,
-Je t’aime à t’en pleurer tout les soirs,
-ton Amoureux, Aaron.</p>
+<p>
+« Toda panela tem sua tampa » 💗<br><br>
+Mon Amour, chaque jour avec toi me fait grandir...<br>
+Je veux être là pour toi, toujours.<br><br>
+Joyeuse première année ensemble ❤️<br>
+Je t’aime.
+</p>
+
 </div>
 
 </div>
@@ -252,11 +244,14 @@ function showEnigme(index) {
     document.getElementById("enigmeBox").innerText = enigmes[index];
 }
 
-/* Vérification */
+/* Vérification améliorée */
 function checkPhrase() {
-    let input = document.getElementById("phrase").value.toLowerCase().trim();
+    let input = document.getElementById("phrase").value
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .trim();
 
-    if (input === "toda panela tem sua tampa") {
+    if (input.includes("toda panela tem sua tampa")) {
         document.getElementById("result").style.display = "block";
     } else {
         alert("Ce n'est pas la bonne phrase...");
@@ -266,4 +261,3 @@ function checkPhrase() {
 
 </body>
 </html>
-
